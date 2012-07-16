@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Directional Phone Directory</title>
+	<link rel="stylesheet"  href="css/themes/default/jquery.mobile-1.1.1.css" />
+	<link rel="stylesheet" href="css/directional.css" />
+	<script src="js/jquery.js"></script>
+	<script src="docs/_assets/js/jqm-docs.js"></script>
+	<script src="js/jquery.mobile-1.1.1.js"></script>
+
+<style>
+	.background {background-color: #FFFFFF; }
+</style>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	
+		//bind action to make the search box type-ahead
+		$('#textSearch').submit(function() {
+
+			$.ajax({
+				url : '/phonedirectory.cfc',
+  				data : {method: "searchBy", searchTerm: $('#search-basic').val() },
+				type : 'GET',	
+				<!-- normalizeJSON: true,  -->
+      			dataType: "json",
+      			success: function(response) {
+        			var contacts = response;
+					console.log(contacts);
+        			//$('#searchResults').empty();
+        			//$.each(contacts, function(index, itinerary) {
+          			//$('#searchResults').append('<p><strong>' + itinerary.QUOTEID + ' ' +
+                     //           itinerary.STATUSCODE + '</strong><br /> Itin: ' +
+                      //          itinerary.ITIN + '<br />' + '</p>');
+
+      			},
+	  
+				<!--normalizeJSON: true,  -->
+				<!--dataType : 'json',  --> 
+				<!--normalizeJSON: false,  -->
+  		<!--		success : function(response) {alert('Success!');console.log(response);$('p#paragraph1').html(response);  -->
+		<!--		console.log(self.normalizeJSON(response));  -->
+		<!--		},  -->
+				error: function(request, statusText) { alert('Sorry, there was a problem!');console.log(request);console.log(statusText);},
+				complete: function(request, statusText) {alert('the request is complete!');}	
+			});
+
+		});
+
+	});
+
+
+	/*
+
+	<ul data-role="listview">
+				<li data-role="list-divider">A</li>
+				<li><a href="index.html">Adam Kinkaid</a></li>
+				<li><a href="index.html">Alex Wickerham</a></li>
+				<li><a href="index.html">Avery Johnson</a></li>
+				<li data-role="list-divider">B</li>
+				<li><a href="index.html">Bob Cabot</a></li>
+				<li data-role="list-divider">C</li>
+				<li><a href="index.html">Caleb Booth</a></li>
+				<li><a href="index.html">Christopher Adams</a></li>
+				<li><a href="index.html">Culver James</a></li>
+				<li data-role="list-divider">D</li>
+				<li><a href="index.html">David Walsh</a></li>
+				<li><a href="index.html">Drake Alfred</a></li>
+				<li data-role="list-divider">E</li>
+				<li><a href="index.html">Elizabeth Bacon</a></li>
+				<li><a href="index.html">Emery Parker</a></li>
+				<li><a href="index.html">Enid Voldon</a></li>
+				<li data-role="list-divider">F</li>
+				<li><a href="index.html">Francis Wall</a></li>
+				<li data-role="list-divider">G</li>
+				<li><a href="index.html">Graham Smith</a></li>
+				<li><a href="index.html">Greta Peete</a></li>
+				<li data-role="list-divider">H</li>
+				<li><a href="index.html">Harvey Walls</a></li>
+				<li data-role="list-divider">M</li>
+				<li><a href="index.html">Mike Farnsworth</a></li>
+				<li><a href="index.html">Murray Vanderbuilt</a></li>
+				<li data-role="list-divider">N</li>
+				<li><a href="index.html">Nathan Williams</a></li>
+				<li data-role="list-divider">P</li>
+				<li><a href="index.html">Paul Baker</a></li>
+				<li><a href="index.html">Pete Mason</a></li>
+				<li data-role="list-divider">R</li>
+				<li><a href="index.html">Rod Tarker</a></li>
+				<li data-role="list-divider">S</li>
+				<li><a href="index.html">Sawyer Wakefield</a></li>
+			</ul>
+*/
+	//bind action to make submit button grab the contents of search box
+
+	//create a template for displaying an array of contacts
+
+	//create detail display template
+
+	//add function to add contact to contacts
+</script>
+
+</head>
+<body>
+<div data-role="page" class="type-home" data-title="Directional Home">
+
+	<div data-role="content">
+
+		<div class="content-primary">
+
+			<div class="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form="ui-bar-a" data-role="header" role="banner">
+				<a class="ui-btn-left ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a" data-iconpos="notext" data-theme="a" data-role="button" data-icon="home" title=" Home ">
+					<span class="ui-btn-inner ui-btn-corner-all">
+						<span class="ui-btn-text"> Home </span>
+						<span data-form="ui-icon" class="ui-icon ui-icon-home ui-icon-shadow"></span>
+					</span>
+				</a>
+				<h1 class="ui-title" tabindex="0" role="heading" aria-level="1">Home</h1>
+				<!--
+				<a class="ui-btn-right ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a" data-iconpos="notext" data-theme="a" data-role="button" data-icon="grid" title=" Navigation ">
+					<span class="ui-btn-inner ui-btn-corner-all">
+						<span class="ui-btn-text"> Navigation </span>
+						<span data-form="ui-icon" class="ui-icon ui-icon-grid ui-icon-shadow"></span>
+					</span>
+				</a>
+				-->
+			</div>
+
+		</div>
+
+		<div class="content-secondary">
+
+			<div class="background" style="text-align:center; padding:5px;">
+				<h1 id="logo"><img src="images/directional_logo.png" alt="Directional Aviation Capital" /></h1>
+			</div>
+
+			<div class="ui-bar ui-bar-a" data-theme="a">
+				<form id="textSearch" method="post" action="#">
+					<label for="search-basic">Search Phone Directory:</label>
+					<input type="search" name="search" id="search-basic" value="" />
+					<input type="submit" name="submit" value="go" />
+				</form>
+
+			</div>
+
+			<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="f">
+				<li class="ui-bar ui-bar-a" data-role="list-divider">Browse by Company</li>
+				<li><a href="companies/directional.html">Directional Aviation Capital</a></li>
+				<li><a href="companies/air-services.html">Air Services</a></li>
+				<li><a href="companies/constant-aviation.html">Constant Aviation</a></li>
+				<li><a href="companies/corporate-wings.html">Corporate Wings</a></li>
+				<li><a href="companies/flight-options.html">Flight Options</a></li>
+				<li><a href="companies/nextant.html">Nextant Aerospace</a></li>
+				<li><a href="companies/sentient.html">Sentient Jet</a></li>
+				<li><a href="companies/sojourn.html">Sojourn Aviation</a></li>
+				<li><a href="companies/spinnaker.html">Spinnaker Air</a></li>
+			</ul>
+
+		</div><!--/content-primary-->
+
+		<p class="intro"><strong>Notice: </strong>This application is for the internal business use of Directional Aviation, it's subsidiaries and affiliates.</p>
+
+	</div>
+
+	<div data-role="footer" class="footer-docs" data-theme="c">
+			<p style="text-align:center;">&copy; 2012 Directional Aviation Capital</p>
+	</div>
+
+</div>
+</body>
+</html>
