@@ -3,6 +3,40 @@ component {
 	remote any function searchBy(searchTerm) 
 		returnFormat="JSON" {
 		
+		var contacts = {};
+		
+		contacts["A"] = [
+			{
+				contactID:1,
+				displayName:"Adam Apple",
+				note:"Some job function"
+			},
+			{
+				contactID:2,
+				displayName:"Andrea Ant",
+				note:"Some job function"
+			}
+		];
+
+		contacts["B"] = [
+			{
+				contactID:3,
+				displayName:"Bob Builder",
+				note:"Builder"
+			},
+			{
+				contactID:4,
+				displayName:"Betty Boo",
+				note:"Ghost Hunter"
+			}
+		];
+
+		return serializeJSON(contacts);
+	}
+
+	remote any function getContactyBy(searchTerm) 
+		returnFormat="JSON" {
+		
 		var contacts = [];
 		
 		contacts[1] = {};
@@ -19,19 +53,6 @@ component {
 		contacts[1].organizations = [];
 		contacts[1].organizations[1] = "Sentient Jet";
 		contacts[1].note = "A cool chick";
-
-		contacts[2] = {};
-		contacts[2].displayName = "Steve Glennon";
-		contacts[2].name = "Steve Glennon";
-		contacts[2].phoneNumbers = [];
-		contacts[2].phoneNumbers[1] = "781-555-5555";
-		contacts[2].emails = [];
-		contacts[2].emails[1] = "sglennon@sentient.com";
-		contacts[2].addresses = [];
-		contacts[2].ims = [];
-		contacts[2].organizations = [];
-		contacts[2].organizations[1] = "Sentient Jet";
-		contacts[2].note = "IT Tech Support";
 
 		return serializeJSON(contacts);
 	}
